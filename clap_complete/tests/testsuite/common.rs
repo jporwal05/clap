@@ -252,6 +252,19 @@ pub fn value_hint_command(name: &'static str) -> clap::Command {
         )
 }
 
+pub fn value_help_command(name: &'static str) -> clap::Command {
+    clap::Command::new(name).arg(
+        clap::Arg::new("choice")
+            .long("choice")
+            .action(clap::ArgAction::Set)
+            .value_parser(clap::builder::PossibleValuesParser::new([
+                PossibleValue::new("bash").help("bash shell (some, more, text)"),
+                PossibleValue::new("fish").help("fish shell"),
+                PossibleValue::new("zsh").help("zsh shell"),
+            ])),
+    )
+}
+
 pub fn value_terminator_command(name: &'static str) -> clap::Command {
     clap::Command::new(name).arg(
         clap::Arg::new("arguments")

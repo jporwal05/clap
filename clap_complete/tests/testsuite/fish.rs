@@ -85,6 +85,18 @@ fn value_hint() {
 }
 
 #[test]
+fn value_help() {
+    let name = "my-app";
+    let cmd = common::value_help_command(name);
+    common::assert_matches_path(
+        "tests/snapshots/value_help.fish",
+        clap_complete::shells::Fish,
+        cmd,
+        name,
+    )
+}
+
+#[test]
 fn value_terminator() {
     let name = "my-app";
     let cmd = common::value_terminator_command(name);
